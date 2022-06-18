@@ -28,6 +28,7 @@ def call(){
             stage('sonarqube'){
                 steps{
                     script{
+                        env.ARGS = "-Dsonar.sources=."
                         common.sonarcheck()
                     }
                 }
