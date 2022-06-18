@@ -4,3 +4,21 @@ def lintChecks(){
       echo lint checks
     '''
 }
+
+def call(){
+    pipeline{
+        agent any
+
+        stages{
+
+            //lint checks
+            stage('Lint Checks'){
+                steps{
+                    script{
+                        nodejs.lintChecks()
+                    }
+                }
+            }
+        }//End of stages
+    }
+}
