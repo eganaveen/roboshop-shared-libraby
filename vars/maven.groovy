@@ -10,6 +10,9 @@ def call(){
     pipeline{
         agent any
 
+        environment{
+            SONAR = credentials('SONAR')
+        }
         stages{
 
             //lint checks
@@ -17,6 +20,14 @@ def call(){
                 steps{
                     script{
                         lintChecks()
+                    }
+                }
+            }
+            //Sonar qube quality check
+            stage('sonarqube'){
+                steps{
+                    script{
+                        common.sonarcheck()
                     }
                 }
             }
