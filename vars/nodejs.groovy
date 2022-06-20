@@ -64,14 +64,14 @@ def call(){
                 }
                 steps {
                     script{
-                        def UPLOAD_STATUS=sh(returnStdout: true, script: "curl -s -L http://54.92.218.237:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip")
-                        print UPLOAD_STATUS
+                        env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -s -L http://54.92.218.237:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip")
                     }
                 }
             }
             stage('Prepare Artifact'){
                 when{
                     expression { env.TAG_NAME != null }
+                    expression { env.UPLOAD_STATUS == "" }
                 }
                 steps{
                     sh '''
