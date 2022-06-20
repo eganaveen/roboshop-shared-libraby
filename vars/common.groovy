@@ -13,7 +13,7 @@ def lintChecks(){
               echo lint checks for ${COMPONENT}
             '''
         }
-        else if (env.APP-TYPE == "python"){
+        else if (env.APP_TYPE == "python"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               #mvn checkstyle:check
@@ -21,12 +21,12 @@ def lintChecks(){
               echo lint checks for ${COMPONENT}
             '''
         }
-        else (env.APP-TYPE == "golang"){
+        else (env.APP_TYPE == "golang"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               echo lint checks for ${COMPONENT}
             '''
-            }
+        }
     }
 }
 def sonarCheck(){
