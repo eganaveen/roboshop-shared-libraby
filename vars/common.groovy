@@ -1,19 +1,19 @@
 def lintChecks(){
     stage('Lint Checks'){
-        if (APP_TYPE == "nodejs"){
+        if (env.APP_TYPE == "nodejs"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               echo lint checks for ${COMPONENT}
             '''
         }
-        else if (APP_TYPE == "maven"){
+        else if (env.APP_TYPE == "maven"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               #mvn checkstyle:check
               echo lint checks for ${COMPONENT}
             '''
         }
-        else if (APP-TYPE == "python"){
+        else if (env.APP-TYPE == "python"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               #mvn checkstyle:check
@@ -21,7 +21,7 @@ def lintChecks(){
               echo lint checks for ${COMPONENT}
             '''
         }
-        else (APP-TYPE == "golang"){
+        else (env.APP-TYPE == "golang"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               echo lint checks for ${COMPONENT}
