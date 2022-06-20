@@ -21,7 +21,7 @@ def lintChecks(){
               echo lint checks for ${COMPONENT}
             '''
         }
-        else (env.APP_TYPE == "golang"){
+        else if (env.APP_TYPE == "golang"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               echo lint checks for ${COMPONENT}
