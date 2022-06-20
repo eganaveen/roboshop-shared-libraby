@@ -55,14 +55,18 @@ def call(){
                             sh 'echo Functional test'
                         }
                     }
-
                 }
-
             }
+            //check the release
             stage('Check the release'){
-                script{
-                    def UPLOAD_STATUS=sh(returnStdout: true, script: "http://172.31.21.99:8081/service/rest/repository/browse/${COMPONENT}/")
-                    output UPLOAD_STATUS
+                when{
+                    expression { env.TAG_NAME != null }
+                }
+                steps {
+                    script{
+                        def UPLOAD_STATUS=sh(returnStdout: true, script: "http://172.31.21.99:8081/service/rest/repository/browse/${COMPONENT}/")
+                        output UPLOAD_STATUS
+                    }
                 }
             }
             stage('Prepare Artifact'){
