@@ -64,7 +64,10 @@ def call(){
                     expression { env.TAG_NAME != null }
                 }
                 steps{
-                    sh 'echo prepare artifact'
+                    sh '''
+                        npm install
+                        zip {COMPONENT}-{TAG_NAME}.zip node_modules server.js
+                    '''
                 }
             }
             stage('Upload artifact to nexus'){
@@ -72,7 +75,9 @@ def call(){
                     expression { env.TAG_NAME != null }
                 }
                 steps{
-                    sh 'echo upload artifact to nexus'
+                    sh'''
+                        curl -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file {COMPONENT}-{TAG_NAME}.zip http://172.31.21.99:8081/repository/${COMPONENT}/${COMPONENT}-{TAG_NAME}.zip
+                    '''
                 }
             }
         }//End of stages
