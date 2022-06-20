@@ -30,7 +30,7 @@ def lintChecks(){
     }
 }
 def sonarCheck(){
-    stage('Sonar Check'){
+    stage('Sonar Analysis'){
         sh '''
           #sonar-scanner -Dsonar.host.url=http://172.31.26.97:9000 ${ARGS} -Dsonar.projectKey=${COMPONENT} -Dsonar.login=${SONAR_USR} -Dsonar.password=${SONAR_PSW}
           #sonar-quality-gate.sh ${SONAR_USR} ${SONAR_PSW} 172.31.26.97 ${COMPONENT}
@@ -40,18 +40,19 @@ def sonarCheck(){
 }
 def testCases(){
     stage('TestCases'){
-        parallel{
 
-            stage('Unit Test'){
-                sh 'echo unit test'
-            }
-            stage('Integration Test'){
-                sh 'echo Integration test'
-            }
-            stage('Functional Test'){
-                sh 'echo Functional test'
-            }
+        def stages = [:]
 
+        stages["Unit Test"] = {
+            echo "echo unit test"
         }
+        stages["Integration Test"] = {
+            echo "echo Integration test"
+        }
+        stages["Functional Test"] = {
+            echo "echo Functional test"
+        }
+
+        parallel(stages)
     }
 }
