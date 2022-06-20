@@ -85,5 +85,10 @@ def artifacts(){
                 '''
             }
         }
+        stage('Upload artifact to nexus'){
+            sh'''
+                curl -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.21.99:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
+            '''
+        }
     }
 }
