@@ -74,6 +74,22 @@ def call(){
                 }
             }
 
+            stage('Prepare Artifact'){
+                when{
+                    expression { env.TAG_NAME != null }
+                }
+                steps{
+                    sh 'echo prepare artifact'
+                }
+            }
+            stage('Upload artifact to nexus'){
+                when{
+                    expression { env.TAG_NAME != null }
+                }
+                steps{
+                    sh 'echo upload artifact to nexus'
+                }
+            }
         }//End of stages
     }
 }
