@@ -64,7 +64,7 @@ def call(){
                 }
                 steps {
                     script{
-                        def UPLOAD_STATUS=sh(returnStdout: true, script: "http://172.31.21.99:8081/service/rest/repository/browse/${COMPONENT}/")
+                        def UPLOAD_STATUS=sh(returnStdout: true, script: "http://172.31.21.99:8081/service/rest/repository/browse/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip")
                         output UPLOAD_STATUS
                     }
                 }
