@@ -39,25 +39,25 @@ def sonarCheck(){
     }
 }
 def testCases(){
-        stage('TestCases'){
-            parallel{
+    stage('TestCases'){
+        parallel{
 
-                stage('Unit Test'){
-                    steps{
-                        sh 'echo unit test'
-                    }
+            stage('Unit Test'){
+                steps{
+                    sh 'echo unit test'
                 }
-                stage('Integration Test'){
-                    steps{
-                        sh 'echo Integration test'
-                    }
-                }
-                stage('Functional Test'){
-                    steps{
-                        sh 'echo Functional test'
-                    }
-                }
-
             }
+            stage('Integration Test'){
+                steps{
+                    sh 'echo Integration test'
+                }
+            }
+            stage('Functional Test'){
+                steps{
+                    sh 'echo Functional test'
+                }
+            }
+
         }
+    }
 }
