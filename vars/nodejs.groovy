@@ -67,7 +67,7 @@ def call(){
                 steps{
                     sh '''
                         npm install
-                        zip -r {COMPONENT}-${TAG_NAME}.zip node_modules server.js
+                        zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
                     '''
                 }
             }
