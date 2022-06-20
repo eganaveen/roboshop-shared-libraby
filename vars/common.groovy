@@ -56,3 +56,33 @@ def testCases(){
         parallel(stages)
     }
 }
+def artifacts(){
+    stage('Check the release'){
+        env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -s -L http://54.92.218.237:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true")
+    }
+    if (env.UPLOAD_STATUS != ""){
+        stage('Prepare Artifact'){
+            if (APP_TYPE == "nodejs") {
+                sh '''
+                    npm install
+                    zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
+                '''
+            }
+            else if (APP_TYPE == "maven") {
+                sh '''
+                    echo
+                '''
+            }
+            else if (APP_TYPE == "python") {
+                sh '''
+                    echo
+                '''
+            }
+            else if (APP_TYPE == "golang") {
+                sh '''
+                    echo
+                '''
+            }
+        }
+    }
+}
