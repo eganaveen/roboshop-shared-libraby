@@ -13,6 +13,7 @@ def call(){
 
         environment{
             SONAR = credentials('SONAR')
+            NEXUS = credentials('NEXUS')
         }
         stages{
 
@@ -66,7 +67,7 @@ def call(){
                 steps{
                     sh '''
                         npm install
-                        zip {COMPONENT}-{TAG_NAME}.zip node_modules server.js
+                        zip -r {COMPONENT}-{TAG_NAME}.zip node_modules server.js
                     '''
                 }
             }
