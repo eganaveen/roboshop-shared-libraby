@@ -97,6 +97,7 @@ def artifacts(){
             }
             else if (APP_TYPE == "nginx") {
                 sh '''
+                    sudo npm cache clean
                     cd static
                     zip -r ../${COMPONENT}-${TAG_NAME}.zip *
                 '''
