@@ -1,4 +1,3 @@
-
 def call() {
     node {
         sh 'rm -rf *'
