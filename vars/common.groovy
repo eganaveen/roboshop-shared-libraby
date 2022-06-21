@@ -58,7 +58,7 @@ def testCases(){
 }
 def artifacts(){
     stage('Check the release'){
-        env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -s -L http://54.92.218.237:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true")
+        env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -s -L http://172.31.1.142:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true")
         print UPLOAD_STATUS
     }
     if (env.UPLOAD_STATUS == ""){
@@ -88,7 +88,7 @@ def artifacts(){
         stage('Upload artifact to nexus'){
             withCredentials([usernamePassword(credentialsId:'NEXUS', passwordVariable: 'NEXUS_PSW', usernameVariable: 'NEXUS_USR')]){
                 sh'''
-                    curl -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.21.99:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
+                    curl -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.1.142:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
                 '''
             }
         }
