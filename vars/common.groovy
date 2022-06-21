@@ -71,7 +71,9 @@ def artifacts(){
             }
             else if (APP_TYPE == "maven") {
                 sh '''
-                    echo
+                    mvn clean package 
+                    mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
+                    zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar
                 '''
             }
             else if (APP_TYPE == "python") {
