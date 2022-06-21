@@ -69,26 +69,26 @@ def artifacts(){
     }
     if (env.UPLOAD_STATUS == ""){
         stage('Prepare Artifact'){
-            if (APP_TYPE == "nodejs") {
+            if (env.APP_TYPE == "nodejs") {
                 sh '''
                     echo  nodejs prrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
                     npm install
                     zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
                 '''
             }
-            else if (APP_TYPE == "maven") {
+            else if (env.APP_TYPE == "maven") {
                 sh '''
                     mvn clean package 
                     mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
                     zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar
                 '''
             }
-            else if (APP_TYPE == "python") {
+            else if (env.APP_TYPE == "python") {
                 sh '''
                     zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt
                 '''
             }
-            else if (APP_TYPE == "golang") {
+            else if (env.APP_TYPE == "golang") {
                 sh '''
                     go mod init ${COMPONENT}
                     go get 
@@ -96,7 +96,7 @@ def artifacts(){
                     zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}
                 '''
             }
-            else if (APP_TYPE == "front") {
+            else if (env.APP_TYPE == "front") {
                 sh '''
                     echo nginxxxxxxxxxxxxxxxxxxxxxxxx
                     cd static
