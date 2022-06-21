@@ -3,6 +3,7 @@ def lintChecks(){
         if (env.APP_TYPE == "nodejs"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
+              echo qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
               echo lint checks for ${COMPONENT}
             '''
         }
