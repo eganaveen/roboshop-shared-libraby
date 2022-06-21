@@ -19,7 +19,6 @@ def lintChecks(){
               #~/node_modules/jslint/bin/jslint.js server.js
               #mvn checkstyle:check
               #pylint *.py
-              echo pppppppppppppppppppppppppppppppp
               echo lint checks for ${COMPONENT}
             '''
         }
