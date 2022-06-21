@@ -27,6 +27,12 @@ def lintChecks(){
               echo lint checks for ${COMPONENT}
             '''
         }
+        else if (env.APP_TYPE == "nginx"){
+            sh '''
+              #~/node_modules/jslint/bin/jslint.js server.js
+              echo lint checks for ${COMPONENT}
+            '''
+        }
     }
 }
 def sonarCheck(){
