@@ -83,7 +83,16 @@ def artifacts(){
             }
             else if (APP_TYPE == "golang") {
                 sh '''
-                    echo
+                    go mod init ${COMPONENT}
+                    go get 
+                    go build
+                    zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}
+                '''
+            }
+            else if (APP_TYPE == "nginx") {
+                sh '''
+                    cd static
+                    zip -r ../${COMPONENT}-${TAG_NAME}.zip *
                 '''
             }
         }
