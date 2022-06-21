@@ -97,7 +97,7 @@ def artifacts(){
             }
             else if (APP_TYPE == "nginx") {
                 sh '''
-                    npm install
+                    sh 'ls -lf'
                     cd static
                     zip -r ../${COMPONENT}-${TAG_NAME}.zip *
                 '''
