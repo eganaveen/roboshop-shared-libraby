@@ -30,6 +30,7 @@ def lintChecks(){
         else if (env.APP_TYPE == "nginx"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
+              echo ppppprrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
               echo lint checks for ${COMPONENT}
             '''
         }
