@@ -71,7 +71,7 @@ def artifacts(){
         stage('Prepare Artifact'){
             if (APP_TYPE == "nodejs") {
                 sh '''
-                    npm install
+                   // npm install
                     zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
                 '''
             }
