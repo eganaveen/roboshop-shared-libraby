@@ -71,14 +71,14 @@ def artifacts(){
         stage('Prepare Artifact'){
             if (APP_TYPE == "nodejs") {
                 sh '''
-                    echo #####################################################
+                    echo 
                     npm install
                     zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
                 '''
             }
             else if (APP_TYPE == "maven") {
                 sh '''
-                    echo ********************************************************* 
+                    echo maven programe
                     mvn clean package 
                     mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
                     zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar
