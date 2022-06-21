@@ -71,14 +71,13 @@ def artifacts(){
         stage('Prepare Artifact'){
             if (APP_TYPE == "nodejs") {
                 sh '''
-                    echo 
+                    echo  nodejs prrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
                     npm install
                     zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
                 '''
             }
             else if (APP_TYPE == "maven") {
                 sh '''
-                    echo maven programe
                     mvn clean package 
                     mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
                     zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar
@@ -99,7 +98,7 @@ def artifacts(){
             }
             else if (APP_TYPE == "nginx") {
                 sh '''
-                    ls -l
+                    echo nginxxxxxxxxxxxxxxxxxxxxxxxx
                     cd static
                     zip -r ../${COMPONENT}-${TAG_NAME}.zip *
                 '''
