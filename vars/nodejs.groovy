@@ -2,6 +2,7 @@ def call() {
     node {
         sh 'rm -rf *'
         git branch: "main", url: "https://github.com/eganaveen/${COMPONENT}"
+        sh 'ls -l'
         env.APP_TYPE = "nodejs"
         sh 'echo this is from nodejs'
         common.lintChecks()
