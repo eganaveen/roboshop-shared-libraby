@@ -1,27 +1,26 @@
 def lintChecks(){
     stage('Lint Checks'){
-//        if (env.APP_TYPE == "nodejs"){
-//            sh '''
-//              #~/node_modules/jslint/bin/jslint.js server.js
-//              echo qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-//              echo lint checks for ${COMPONENT}
-//            '''
-//        }
-//        else
-        if (env.app_type == "front"){
+        if (APP_TYPE == "nodejs"){
+            sh '''
+              #~/node_modules/jslint/bin/jslint.js server.js
+              echo qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+              echo lint checks for ${COMPONENT}
+            '''
+        }
+        else if (app_type == "front"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               echo lint checks for ${COMPONENT}
             '''
         }
-        else if (env.APP_TYPE == "maven"){
+        else if (APP_TYPE == "maven"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               #mvn checkstyle:check
               echo lint checks for ${COMPONENT}
             '''
         }
-        else if (env.APP_TYPE == "python"){
+        else if (APP_TYPE == "python"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               #mvn checkstyle:check
@@ -29,7 +28,7 @@ def lintChecks(){
               echo lint checks for ${COMPONENT}
             '''
         }
-        else if (env.APP_TYPE == "golang"){
+        else if (APP_TYPE == "golang"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               echo lint checks for ${COMPONENT}
@@ -72,26 +71,26 @@ def artifacts(){
     }
     if (env.UPLOAD_STATUS == ""){
         stage('Prepare Artifact'){
-            if (env.APP_TYPE == "nodejs") {
+            if (APP_TYPE == "nodejs") {
                 sh '''
                     echo  nodejs prrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
                     npm install
                     zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
                 '''
             }
-            else if (env.APP_TYPE == "maven") {
+            else if (APP_TYPE == "maven") {
                 sh '''
                     mvn clean package 
                     mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
                     zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar
                 '''
             }
-            else if (env.APP_TYPE == "python") {
+            else if (APP_TYPE == "python") {
                 sh '''
                     zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt
                 '''
             }
-            else if (env.APP_TYPE == "golang") {
+            else if (APP_TYPE == "golang") {
                 sh '''
                     go mod init ${COMPONENT}
                     go get 
@@ -99,7 +98,7 @@ def artifacts(){
                     zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}
                 '''
             }
-            else if (env.app_type == "front") {
+            else if (app_type == "front") {
                 sh '''
                     echo nginxxxxxxxxxxxxxxxxxxxxxxxx
                     cd static
