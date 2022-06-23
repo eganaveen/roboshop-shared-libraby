@@ -3,11 +3,10 @@ def lintChecks(){
         if (APP_TYPE == "nodejs"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
-              echo qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
               echo lint checks for ${COMPONENT}
             '''
         }
-        else if (app_type == "front"){
+        else if (APP_TYPE == "front"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               echo lint checks for ${COMPONENT}
@@ -73,7 +72,6 @@ def artifacts(){
         stage('Prepare Artifact'){
             if (APP_TYPE == "nodejs") {
                 sh '''
-                    echo  nodejs prrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
                     npm install
                     zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
                 '''
@@ -98,9 +96,8 @@ def artifacts(){
                     zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}
                 '''
             }
-            else if (app_type == "front") {
+            else if (APP_TYPE == "front") {
                 sh '''
-                    echo nginxxxxxxxxxxxxxxxxxxxxxxxx
                     cd static
                     zip -r ../${COMPONENT}-${TAG_NAME}.zip *
                 '''

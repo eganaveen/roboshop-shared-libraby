@@ -2,9 +2,7 @@ def call() {
     node {
         sh 'rm -rf *'
         git branch: "main", url: "https://github.com/eganaveen/${COMPONENT}"
-        sh 'ls -l | grep Jenkinsfile'
-        env.app_type="front"
-        sh 'echo this is from frontend'
+        env.APP_TYPE="front"
         common.lintChecks()
         env.ARGS = "-Dsonar.sources=."
         common.sonarCheck()
