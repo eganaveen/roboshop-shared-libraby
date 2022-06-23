@@ -3,6 +3,7 @@ def call() {
         sh 'rm -rf *'
         git branch: "main", url: "https://github.com/eganaveen/${COMPONENT}"
         env.APP_TYPE = "nodejs"
+        sh 'echo this is from frontend'
         common.lintChecks()
         env.ARGS = "-Dsonar.sources=."
         common.sonarCheck()
