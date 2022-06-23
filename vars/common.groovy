@@ -8,7 +8,7 @@ def lintChecks(){
 //            '''
 //        }
 //        else
-        if (env.APP_TYPE == "front"){
+        if (env.app_type == "front"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               echo lint checks for ${COMPONENT}
@@ -99,7 +99,7 @@ def artifacts(){
                     zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}
                 '''
             }
-            else if (env.APP_TYPE == "front") {
+            else if (env.app_type == "front") {
                 sh '''
                     echo nginxxxxxxxxxxxxxxxxxxxxxxxx
                     cd static
