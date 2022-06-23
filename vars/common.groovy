@@ -1,13 +1,14 @@
 def lintChecks(){
     stage('Lint Checks'){
-        if (env.APP_TYPE == "nodejs"){
-            sh '''
-              #~/node_modules/jslint/bin/jslint.js server.js
-              echo qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-              echo lint checks for ${COMPONENT}
-            '''
-        }
-        else if (env.APP_TYPE == "front"){
+//        if (env.APP_TYPE == "nodejs"){
+//            sh '''
+//              #~/node_modules/jslint/bin/jslint.js server.js
+//              echo qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+//              echo lint checks for ${COMPONENT}
+//            '''
+//        }
+//        else
+        if (env.APP_TYPE == "front"){
             sh '''
               #~/node_modules/jslint/bin/jslint.js server.js
               echo lint checks for ${COMPONENT}
