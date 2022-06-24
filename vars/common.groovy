@@ -66,6 +66,7 @@ def testCases(){
 def feature(){
     stage('feature'){
         sh 'echo'
+
     }
 }
 def artifacts(){
