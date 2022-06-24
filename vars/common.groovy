@@ -63,6 +63,11 @@ def testCases(){
         parallel(stages)
     }
 }
+def ega(){
+    stage('ega'){
+        sh "echo demo"
+    }
+}
 def artifacts(){
     stage('Check the release'){
         env.UPLOAD_STATUS=sh(returnStdout: true, script: "curl -s -L http://172.31.1.142:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true")
