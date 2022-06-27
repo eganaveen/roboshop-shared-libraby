@@ -1,6 +1,6 @@
 def call() {
     parameters {
-        choice(choices: ['dev', 'prod'], description: "Pik ENVc", name: "ENV")
+        choice(choices: ['dev', 'prod'], description: "Pik ENV", name: "ENV")
     }
     node {
         git branch: "main", url: "https://github.com/eganaveen/${REPONAME}"
